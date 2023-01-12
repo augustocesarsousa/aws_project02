@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;
@@ -17,6 +18,7 @@ import br.com.acsousa.aws_project02.repository.ProductEventLogRepository;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackageClasses = ProductEventLogRepository.class)
+@Profile("!local")
 public class DynamoDBConfig {
     @Value("${aqs.region}")
     private String awsRegion;
